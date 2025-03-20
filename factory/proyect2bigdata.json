@@ -1,0 +1,9 @@
+{
+	"name": "proyect2bigdata",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "448032fe-9ad2-4b95-afb2-d6fa5dce4b69",
+		"tenantId": "0f69fa83-d864-47af-b9e8-a4a00c1b38f2"
+	}
+}
