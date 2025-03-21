@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "SourceDataset_w1c",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -36,11 +40,14 @@
 				"          Year = toInteger(Year)) ~> source1copy",
 				"source1copy sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          Country as string,",
+				"          {Country Code} as string,",
+				"          Year as string,",
+				"          Inflation as string",
+				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     store: 'cache',",
-				"     format: 'inline',",
-				"     output: false,",
 				"     saveOrder: 1) ~> sink1"
 			]
 		}
