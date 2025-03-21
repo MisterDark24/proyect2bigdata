@@ -12,7 +12,15 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SourceDataset_w1c",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "source1copy"
@@ -29,7 +37,18 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 derive(Inflation = toDecimal(Inflation, 18, 10),",
-				"          Year = toInteger(Year)) ~> source1copy"
+				"          Year = toInteger(Year)) ~> source1copy",
+				"source1copy sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Country as string,",
+				"          {Country Code} as string,",
+				"          Year as string,",
+				"          Inflation as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> sink1"
 			]
 		}
 	}
